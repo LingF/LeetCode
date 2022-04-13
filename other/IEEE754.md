@@ -5,8 +5,6 @@ JavaScript 的数字是 IEEE-754 标准存储的双精度浮点数类型，双�
 
 ![双精度浮点数](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0fc2906c-5b56-4ac3-92da-d2f6880201f6/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220413%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220413T150502Z&X-Amz-Expires=86400&X-Amz-Signature=751109692079275660a408eaa1bba921ab723e57222facd4cab34a90a01720f8&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
 
-![45](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b1fc8361-e5d6-44c7-828f-af130c34fc13/3f31167e5d425d4be3a546c470361248.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220413%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220413T152525Z&X-Amz-Expires=86400&X-Amz-Signature=98d90289b8e01ad88f0f4edf584bcc989d5e834665584c3c44d3b0039185d023&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%223f31167e5d425d4be3a546c470361248.png%22&x-id=GetObject)
-
 - 第一位用于表示符号 **sign** 
   + 0 表示正数
   + 1 表示负数
