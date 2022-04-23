@@ -13,6 +13,7 @@
 - [2022-04-20 相交链表](/daily/2022-04-20.md)（LeetCode 160）
 - [2022-04-21 反转链表](/daily/2022-04-21.md)（LeetCode 206）
 - [2022-04-22 回文链表](/daily/2022-04-22.md)（LeetCode 234）
+- [2022-04-23 链表的中间结点](/daily/2022-04-23.md)（LeetCode 876）
 
  <!-- ### 类型分类
 
@@ -33,7 +34,8 @@
 - [2022-04-18 删除排序链表中的重复元素](/daily/2022-04-18.md)（LeetCode 83）
 - [2022-04-19 环形链表 | 环形链表2](/daily/2022-04-19.md)（LeetCode 141 | 142）
 - [2022-04-20 相交链表](/daily/2022-04-20.md)（LeetCode 160）- [2022-04-21 反转链表](/daily/2022-04-21.md)（LeetCode 206）
-- [2022-04-22 回文链表](/daily/2022-04-22.md)（LeetCode 234）-->
+- [2022-04-22 回文链表](/daily/2022-04-22.md)（LeetCode 234）
+- [2022-04-23 链表的中间结点](/daily/2022-04-23.md)（LeetCode 876）-->
 
 ### 依赖
 - [Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/) md内额外要素需要此插件支持，尝试本地安装预览
