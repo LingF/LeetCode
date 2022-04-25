@@ -15,6 +15,7 @@
 - [2022-04-22 回文链表](/daily/2022-04-22.md)（LeetCode 234）
 - [2022-04-23 链表的中间结点](/daily/2022-04-23.md)（LeetCode 876）
 - [2022-04-24 链表中倒数第k个结点](/daily/2022-04-24.md)（剑指 Offer 22）
+- [2022-04-25 用栈实现队列](/daily/2022-04-25.md)（LeetCode 232）
 
  <!-- ### 类型分类
 
@@ -37,6 +38,9 @@
 - [2022-04-20 相交链表](/daily/2022-04-20.md)（LeetCode 160）- [2022-04-21 反转链表](/daily/2022-04-21.md)（LeetCode 206）
 - [2022-04-22 回文链表](/daily/2022-04-22.md)（LeetCode 234）
 - [2022-04-23 链表的中间结点](/daily/2022-04-23.md)（LeetCode 876）-->
+
+<!-- #### 栈与队列
+- [2022-04-25 用栈实现队列](/daily/2022-04-25.md)（LeetCode 232） -->
 
 ### 依赖
 - [Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/) md内额外要素需要此插件支持，尝试本地安装预览
