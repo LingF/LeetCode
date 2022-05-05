@@ -63,6 +63,8 @@
 
 - [IEE754](/other/IEEE754.md)（解释 0.1 + 0.2 !== 0.3）
 - [树](/other/Tree.md)
+- [排序算法](/other/SortingAlgorithm.md)
+  - [冒泡排序](/other/SortingAlgorithm.md#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%EF%BC%88Bubble%20Sort%EF%BC%89)
 
 ### 依赖
 
