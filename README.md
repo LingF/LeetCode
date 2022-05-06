@@ -59,13 +59,14 @@
 - [2022-05-03 平衡二叉树](/daily/2022-05-03.md)（LeetCode 110）
 - [2022-05-04 翻转二叉树](/daily/2022-05-04.md)（LeetCode 226）-->
 
-### 其他知识
+### 基础知识
 
 - [IEE754](/other/IEEE754.md)（解释 0.1 + 0.2 !== 0.3）
 - [树](/other/Tree.md)
 - [排序算法](/other/SortingAlgorithm.md)
-  - [冒泡排序](/other/SortingAlgorithm.md#冒泡排序bubble-sort)
-  - [选择排序](/other/SortingAlgorithm.md#选择排序selection-sort)
+  - [冒泡排序](/other/SortingAlgorithm.md#1-冒泡排序bubble-sort)
+  - [选择排序](/other/SortingAlgorithm.md#2-选择排序selection-sort)
+  - [插入排序](/other/SortingAlgorithm.md#3-插入排序insertion-sort)
 
 ### 依赖
 

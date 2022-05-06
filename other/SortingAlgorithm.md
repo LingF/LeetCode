@@ -1,18 +1,26 @@
 - [排序算法](#排序算法)
-  - [冒泡排序（Bubble Sort）](#冒泡排序bubble-sort)
+  - [1. 冒泡排序（Bubble Sort）](#1-冒泡排序bubble-sort)
+    - [时间复杂度：`O(n^2)`](#时间复杂度on2)
     - [步骤](#步骤)
     - [实现](#实现)
-  - [选择排序（Selection Sort）](#选择排序selection-sort)
+  - [2. 选择排序（Selection Sort）](#2-选择排序selection-sort)
+    - [时间复杂度：`O(n^2)`](#时间复杂度on2-1)
     - [步骤](#步骤-1)
     - [实现](#实现-1)
+  - [3. 插入排序（Insertion Sort）](#3-插入排序insertion-sort)
+    - [时间复杂度：`O(n^2)`](#时间复杂度on2-2)
+    - [步骤](#步骤-2)
+    - [实现](#实现-2)
 
 ## 排序算法
 
 十大排序算法：冒泡排序、选择排序、插入排序、归并排序、堆排序、快速排序、希尔排序、计数排序、基数排序、桶排序
 
-### 冒泡排序（Bubble Sort）
+### 1. 冒泡排序（Bubble Sort）
 
 类似元素经由交换慢慢“浮”到数列的顶端
+
+#### 时间复杂度：`O(n^2)`
 
 #### 步骤
 
@@ -45,7 +53,7 @@ function bubbleSort(nums) {
 }
 ```
 
-### 选择排序（Selection Sort）
+### 2. 选择排序（Selection Sort）
 
 与冒泡排序类似，可以看成是优化
 
@@ -53,6 +61,8 @@ function bubbleSort(nums) {
 - 选择：整体中选择
 
 > 确定最大最小后交换，减少了交换次数
+
+#### 时间复杂度：`O(n^2)`
 
 #### 步骤
 
@@ -85,3 +95,53 @@ function choiceSort(nums) {
   return nums
 }
 ```
+
+### 3. 插入排序（Insertion Sort）
+
+非交换位置，而是找到相应位置并插入
+
+#### 时间复杂度：`O(n^2)`
+
+对一个很大且其中的元素已经有序（或接近有序）的数组进行排序将会比对随机顺序的数组或是逆序数组进行排序要快得多
+
+> 对于比分有序的数组十分高效，也适合小规模数组
+
+#### 步骤
+
+1. 对于未排序的数据，在已排序序列中从后向前扫描，找到相应的位置插入
+2. 为了给插入的元素腾出空间，将插入位置之后的已排序元素都向右移动一位
+
+#### 实现
+
+```javascript {.line-numbers}
+function insertionSort(nums) {
+  if (nums.length === 0) return nums
+  // 当前待排序数据
+  // 该元素之前的元素均已排序
+  let currentValue
+  for (let i = 0, l = nums.length - 1; i < l; i++) {
+    // 已排序数据的下标
+    let preIndex = i
+    // 待排序数据
+    // 待排序下标 preIndex + 1
+    currentValue = nums[preIndex + 1]
+    // 在已排序数据中 倒序 寻找合适的插入位置
+    // 待排序 < 比较元素
+    // 比较元素向后移动一位
+    while (preIndex >= 0 && currentValue < nums[preIndex]) {
+      // 比较元素后移一位
+      nums[preIndex + 1] = nums[preIndex]
+      preIndex--
+    }
+    // while 循环结束，找到合适的位置插入
+    nums[preIndex + 1] = currentValue
+  }
+  return nums
+}
+```
+
+> 若从 1 开始（理解为首个元素默认是有序的，因此可从 1 开始）：
+>
+> - l = nums.length
+> - preIndex = i - 1
+> - currentValue = nums[i]
