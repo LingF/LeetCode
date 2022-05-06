@@ -1,3 +1,11 @@
+- [排序算法](#排序算法)
+  - [冒泡排序（Bubble Sort）](#冒泡排序bubble-sort)
+    - [步骤](#步骤)
+    - [实现](#实现)
+  - [选择排序（Selection Sort）](#选择排序selection-sort)
+    - [步骤](#步骤-1)
+    - [实现](#实现-1)
+
 ## 排序算法
 
 十大排序算法：冒泡排序、选择排序、插入排序、归并排序、堆排序、快速排序、希尔排序、计数排序、基数排序、桶排序
@@ -32,6 +40,47 @@ function bubbleSort(nums) {
         nums[j] = temp
       }
     }
+  }
+  return nums
+}
+```
+
+### 选择排序（Selection Sort）
+
+与冒泡排序类似，可以看成是优化
+
+- 冒泡：相邻元素
+- 选择：整体中选择
+
+> 确定最大最小后交换，减少了交换次数
+
+#### 步骤
+
+1. 首先，找到最小（大）的元素
+2. 其次，将它和数组的第一个元素交换位置
+3. 再次，在剩下的元素中找到最小（大）的元素，将它与数组第二个元素交换位置
+4. 重复直到将整个数组排序
+
+#### 实现
+
+```javascript {.line-numbers}
+function choiceSort(nums) {
+  if (nums.length === 0) return nums
+  for (let i = 0, len = nums.length; i < len; i++) {
+    // 最小数下标
+    // 每次循环开始假设第一个数最小
+    let minIndex = i
+    for (let j = i; j < len; j++) {
+      // 找到最小值
+      if (nums[j] < nums[minIndex]) {
+        // 保存最小值下标
+        minIndex = j
+      }
+    }
+    // 第i个元素 与 最小数 交换
+    let temp = nums[minIndex]
+    nums[minIndex] = nums[i]
+    nums[i] = temp
   }
   return nums
 }
