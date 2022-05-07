@@ -11,6 +11,10 @@
     - [时间复杂度：`O(n^2)`](#时间复杂度on2-2)
     - [步骤](#步骤-2)
     - [实现](#实现-2)
+  - [4. 快速排序（Quick Sort）](#4-快速排序quick-sort)
+    - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
+    - [步骤](#步骤-3)
+    - [实现](#实现-3)
 
 ## 排序算法
 
@@ -145,3 +149,76 @@ function insertionSort(nums) {
 > - l = nums.length
 > - preIndex = i - 1
 > - currentValue = nums[i]
+
+### 4. 快速排序（Quick Sort）
+
+对冒泡排序的一种改进，也是采用分治法的一个典型的应用
+
+#### 时间复杂度：`O(nlogn)`
+
+#### 步骤
+
+1. 任意选取一个数据（比如第一个）作为关键数据，称为基准数据
+2. 然后将所有比它小的数放它前面，比它大的放后面，这个过程称为一趟 __快速排序__，也称为 __分区（partition）操作__
+3. 通过一趟快速排序将要排序的数据分割成独立的两部分，其中一部分所有数据都比另一部分小，再分别进行快速排序，递归进行，达到整个数据变成有序序列
+
+#### 实现
+
+不借助额外空间
+
+1. 初始化
+    - 选取基准数据
+    - 基准数据与末尾数据交换
+    - 分区指示器指向第一个元素下标 - 1
+2. 遍历
+    - 当前元素 <= 基准数据，分区指示器右移一位
+    - 当前元素下标 > 分区指示器的下标，分区指示器指向的元素与当前元素交换
+
+```javascript {.line-numbers}
+function quickSort(nums) {
+  return sort(nums, 0, nums.length - 1)
+}
+function sort(array, start, end) {
+  if (array.length < 1 || start < 0 || end >= array.length || start > end) return null
+  // 数据分割成独立的两部分
+  // 分区指示器
+  let zoneIndex = partition(array, start, end)
+  if (zoneIndex > start) {
+    sort(array, start, zoneIndex - 1)
+  }
+  if (zoneIndex < end) {
+    sort(array, zoneIndex + 1, end)
+  }
+  return array
+}
+// 快速排序分区方法
+function partition(array, start, end) {
+  // 只有一个元素时不需分区
+  if (start === end) return start
+  // 随机选取一个基准数
+  let pivot = Math.floor(Math.random() * (end - start) + start)
+  // 分区指示器，初试值为分区首元素下标 - 1
+  let zoneIndex = start - 1
+  console.log('开始下标:' + start + ',结束下标:' + end + ',基准数下标:' + pivot + ',元素值' + array[pivot] + ',分区指示器:' + zoneIndex)
+  // 将基准数与分区尾元素交换位置
+  swap(array, pivot, end)
+  for (let i = start; i <= end; i++) {
+    // 当前元素 <= 基准元素
+    if (array[i] <= array[end]) {
+      // 分区指示器累加
+      zoneIndex++
+      // 当前元素下标 > 分区指示器下标，交换
+      if (i > zoneIndex) {
+        swap(array, i, zoneIndex)
+      }
+    }
+  }
+  return zoneIndex
+}
+// 交换数组内两个元素
+function swap(array, i, j) {
+  let temp = array[i]
+  array[i] = array[j]
+  array[j] = temp
+}
+```

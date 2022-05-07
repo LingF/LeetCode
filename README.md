@@ -64,9 +64,10 @@
 - [IEE754](/other/IEEE754.md)（解释 0.1 + 0.2 !== 0.3）
 - [树](/other/Tree.md)
 - [排序算法](/other/SortingAlgorithm.md)
-  - [冒泡排序](/other/SortingAlgorithm.md#1-冒泡排序bubble-sort)
-  - [选择排序](/other/SortingAlgorithm.md#2-选择排序selection-sort)
-  - [插入排序](/other/SortingAlgorithm.md#3-插入排序insertion-sort)
+  - [1. 冒泡排序](/other/SortingAlgorithm.md#1-冒泡排序bubble-sort)
+  - [2. 选择排序](/other/SortingAlgorithm.md#2-选择排序selection-sort)
+  - [3. 插入排序](/other/SortingAlgorithm.md#3-插入排序insertion-sort)
+  - [4. 快速排序](/other/SortingAlgorithm.md#4-快速排序quick-sort)
 
 ### 依赖
 
