@@ -15,6 +15,10 @@
     - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
     - [步骤](#步骤-3)
     - [实现](#实现-3)
+  - [5. 希尔排序（Shell Sort）](#5-希尔排序shell-sort)
+    - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
+    - [步骤](#步骤-4)
+    - [实现](#实现-4)
 
 ## 排序算法
 
@@ -220,5 +224,76 @@ function swap(array, i, j) {
   let temp = array[i]
   array[i] = array[j]
   array[j] = temp
+}
+```
+
+### 5. 希尔排序（Shell Sort）
+
+简单插入排序的改进版；它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫 __缩小增量排序__
+
+#### 时间复杂度 `nlogn`
+
+#### 步骤
+
+1. 按一定增量分组，对每组使用插入排序算法排序
+2. 然后缩小增量继续分组排序，直到增量减至1
+
+> 这个不断减小的增量，就构成了一个增量序列
+
+##### 案例
+
+例如：[x, x, x, x, x, x, x, x]
+
+```
+gap = length / 2
+gap = gap / 2
+// 增量序列{4, 2, 1}
+```
+
+第一个增量为4，则原始数据分为4组，组内每个元素之间下标之差为4，这4组分别进行插入排序
+第二个增量...
+
+> 增量序列是递减，且最后为1 则都可以使用
+> 目前还无法证明某个序列是“最好的”
+
+##### 常用增量序列
+
+- 希尔增量序列：`{N/2, (N/2)/2, ..., 1}`
+- Hibbard 序列：`{2^k-1, ..., 3, 1}`
+- Sedgewick 序列：`{..., 109, 41, 19, 5, 1}` 表达式：$9 * 4^i - 9 * 2^i + 1$ 或者 $4^i - 3 * 2^i + 1$
+
+#### 实现
+
+```javascript {.line-numbers}
+function shellSort(nums) {
+  let len = nums.length
+  // 按增量排序排序后，每个分组中
+  // temp 代表当前待排序数据
+  // 该元素之前的组内元素均已被排序过
+  let currentValue
+  // 相较插入排序：表示分组的增量，依次递减
+  let gap = Math.floor(len / 2)
+  while (gap > 0) {
+    // 组内排序
+    for (i = gap; i < len; i++) {
+      currentValue = nums[i]
+      // 组内已被排序数据的索引
+      let preIndex = i - gap
+      // 已被排序过的数据中倒序找合适的位置
+      // 当前排序数据 < 比较的元素，比较的元素后移一位
+      while (preIndex >= 0 && nums[preIndex] > currentValue) {
+        nums[preIndex + gap] = nums[preIndex]
+        preIndex -= gap
+      }
+      // while 循环结束
+      // 说明已经找到了当前待排序数据合适位置，插入
+      nums[preIndex + gap] = currentValue
+    }
+    console.log('本轮增量：【', gap, '】排序后的数组')
+    console.log(nums)
+    console.log('--------------------')
+    gap = Math.floor(gap / 2)
+  }
+  return nums
 }
 ```

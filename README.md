@@ -68,6 +68,7 @@
   - [2. 选择排序](/other/SortingAlgorithm.md#2-选择排序selection-sort)
   - [3. 插入排序](/other/SortingAlgorithm.md#3-插入排序insertion-sort)
   - [4. 快速排序](/other/SortingAlgorithm.md#4-快速排序quick-sort)
+  - [5. 希尔排序](/other/SortingAlgorithm.md#5-希尔排序shell-sort)
 
 ### 依赖
 
