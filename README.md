@@ -69,6 +69,7 @@
   - [3. 插入排序](/other/SortingAlgorithm.md#3-插入排序insertion-sort)
   - [4. 快速排序](/other/SortingAlgorithm.md#4-快速排序quick-sort)
   - [5. 希尔排序](/other/SortingAlgorithm.md#5-希尔排序shell-sort)
+  - [6. 归并排序](/other/SortingAlgorithm.md#6-归并排序merge-sort)
 
 ### 依赖
 

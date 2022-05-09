@@ -19,18 +19,22 @@
     - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
     - [步骤](#步骤-4)
     - [实现](#实现-4)
+  - [6. 归并排序（Merge Sort）](#6-归并排序merge-sort)
+    - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
+    - [步骤](#步骤-5)
+    - [实现](#实现-5)
 
-## 排序算法
+# 排序算法
 
 十大排序算法：冒泡排序、选择排序、插入排序、归并排序、堆排序、快速排序、希尔排序、计数排序、基数排序、桶排序
 
-### 1. 冒泡排序（Bubble Sort）
+## 1. 冒泡排序（Bubble Sort）
 
 类似元素经由交换慢慢“浮”到数列的顶端
 
-#### 时间复杂度：`O(n^2)`
+### 时间复杂度：`O(n^2)`
 
-#### 步骤
+### 步骤
 
 1. 比较相邻的元素
     - 如果第一个比第二个大，则交换
@@ -39,7 +43,7 @@
 3. 针对所有元素进行以上步骤，除了最后一个
 4. 重复步骤1～3，直到排序完成
 
-#### 实现
+### 实现
 
 ```javascript {.line-numbers}
 function bubbleSort(nums) {
@@ -61,7 +65,7 @@ function bubbleSort(nums) {
 }
 ```
 
-### 2. 选择排序（Selection Sort）
+## 2. 选择排序（Selection Sort）
 
 与冒泡排序类似，可以看成是优化
 
@@ -70,16 +74,16 @@ function bubbleSort(nums) {
 
 > 确定最大最小后交换，减少了交换次数
 
-#### 时间复杂度：`O(n^2)`
+### 时间复杂度：`O(n^2)`
 
-#### 步骤
+### 步骤
 
 1. 首先，找到最小（大）的元素
 2. 其次，将它和数组的第一个元素交换位置
 3. 再次，在剩下的元素中找到最小（大）的元素，将它与数组第二个元素交换位置
 4. 重复直到将整个数组排序
 
-#### 实现
+### 实现
 
 ```javascript {.line-numbers}
 function choiceSort(nums) {
@@ -104,22 +108,22 @@ function choiceSort(nums) {
 }
 ```
 
-### 3. 插入排序（Insertion Sort）
+## 3. 插入排序（Insertion Sort）
 
 非交换位置，而是找到相应位置并插入
 
-#### 时间复杂度：`O(n^2)`
+### 时间复杂度：`O(n^2)`
 
 对一个很大且其中的元素已经有序（或接近有序）的数组进行排序将会比对随机顺序的数组或是逆序数组进行排序要快得多
 
 > 对于比分有序的数组十分高效，也适合小规模数组
 
-#### 步骤
+### 步骤
 
 1. 对于未排序的数据，在已排序序列中从后向前扫描，找到相应的位置插入
 2. 为了给插入的元素腾出空间，将插入位置之后的已排序元素都向右移动一位
 
-#### 实现
+### 实现
 
 ```javascript {.line-numbers}
 function insertionSort(nums) {
@@ -154,19 +158,19 @@ function insertionSort(nums) {
 > - preIndex = i - 1
 > - currentValue = nums[i]
 
-### 4. 快速排序（Quick Sort）
+## 4. 快速排序（Quick Sort）
 
 对冒泡排序的一种改进，也是采用分治法的一个典型的应用
 
-#### 时间复杂度：`O(nlogn)`
+### 时间复杂度：`O(nlogn)`
 
-#### 步骤
+### 步骤
 
 1. 任意选取一个数据（比如第一个）作为关键数据，称为基准数据
 2. 然后将所有比它小的数放它前面，比它大的放后面，这个过程称为一趟 __快速排序__，也称为 __分区（partition）操作__
 3. 通过一趟快速排序将要排序的数据分割成独立的两部分，其中一部分所有数据都比另一部分小，再分别进行快速排序，递归进行，达到整个数据变成有序序列
 
-#### 实现
+### 实现
 
 不借助额外空间
 
@@ -227,20 +231,20 @@ function swap(array, i, j) {
 }
 ```
 
-### 5. 希尔排序（Shell Sort）
+## 5. 希尔排序（Shell Sort）
 
 简单插入排序的改进版；它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫 __缩小增量排序__
 
-#### 时间复杂度 `nlogn`
+### 时间复杂度 `nlogn`
 
-#### 步骤
+### 步骤
 
 1. 按一定增量分组，对每组使用插入排序算法排序
 2. 然后缩小增量继续分组排序，直到增量减至1
 
 > 这个不断减小的增量，就构成了一个增量序列
 
-##### 案例
+#### 案例
 
 例如：[x, x, x, x, x, x, x, x]
 
@@ -256,13 +260,13 @@ gap = gap / 2
 > 增量序列是递减，且最后为1 则都可以使用
 > 目前还无法证明某个序列是“最好的”
 
-##### 常用增量序列
+#### 常用增量序列
 
 - 希尔增量序列：`{N/2, (N/2)/2, ..., 1}`
 - Hibbard 序列：`{2^k-1, ..., 3, 1}`
 - Sedgewick 序列：`{..., 109, 41, 19, 5, 1}` 表达式：$9 * 4^i - 9 * 2^i + 1$ 或者 $4^i - 3 * 2^i + 1$
 
-#### 实现
+### 实现
 
 ```javascript {.line-numbers}
 function shellSort(nums) {
@@ -297,3 +301,57 @@ function shellSort(nums) {
   return nums
 }
 ```
+
+## 6. 归并排序（Merge Sort）
+
+对于给定的一组数据，利用 递归 和 分治技术将数据序列划分成为越来越小的半子表，在对半子表排序后，再用递归方法将排序好的半子表合并成为越来越大的有序序列
+
+### 时间复杂度：`O(nlogn)`
+
+### 步骤
+
+1. 拆分，直到每个孙子表剩2个元素
+2. 每个孙子表排序，得到有序孙子表
+3. 准备空白数组，孙子表两两比较，分别拿出一个比较，依次放入
+4. 获得的子表继续两两比较
+
+### 实现
+
+```javascript {.line-numbers}
+function mergeSort(nums) {
+  if (nums.length < 2) return nums
+  // 拆分数组，然后递归排序，并用 merge 合并
+  let mid = Math.floor(nums.length / 2)
+  let left = nums.slice(0, mid)
+  let right = nums.slice(mid, nums.length)
+  return merge(mergeSort(left), mergeSort(right))
+}
+// 将两段排序好的数组结合成一个排序数组
+function merge(left, right) {
+  let result = Array.from({ length: left.length + right.length })
+  for (let index = 0, i = 0, j = 0, len = result.length; index < len; index++) {
+    // - 考虑一边已经取完，另一边直接赋值
+    // - 否则比较
+    if (i >= left.length) {
+      // 左边数组已经取完，取右边数组的值即可
+      result[index] = right[j++]
+    } else if (j >= right.length) {
+      // 右边数组已经取完，取左边数组的值即可
+      result[index] = left[i++]
+    } else if (left[i] > right[j]) {
+      // 左边数组的元素 > 右边数组元素，取右边
+      result[index] = right[j++]
+    } else {
+      // 右边数组的元素 > 左边数组元素，取左边
+      result[index] = left[i++]
+    }
+  }
+  console.log('左子数组：', left)
+  console.log('右子数组：', right) 
+  console.log('合并后：', result)
+  return result
+}
+```
+
+> 1. 划分几份并没有什么约束，例如：一分为二等
+> 2. 有时考虑到性能，当分组到一定大小后采用插入排序、希尔排序对子数组排序
