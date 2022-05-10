@@ -23,6 +23,10 @@
     - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
     - [步骤](#步骤-5)
     - [实现](#实现-5)
+  - [7. 堆排序（Heap Sort）](#6-归并排序heap-sort)
+    - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
+    - [步骤](#步骤-6)
+    - [实现](#实现-6)
 
 # 排序算法
 
@@ -355,3 +359,96 @@ function merge(left, right) {
 
 > 1. 划分几份并没有什么约束，例如：一分为二等
 > 2. 有时考虑到性能，当分组到一定大小后采用插入排序、希尔排序对子数组排序
+
+## 7. 堆排序（Heap Sort）
+
+利用堆这种数据结构所设计的一种排序算法
+
+> 堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父结点
+
+### 时间复杂度：`O(nlogn)`
+
+### 步骤
+
+1. 将数组视为一个完全二叉树
+2. 找到最后一个非叶子结点（`length / 2 - 1`，[完全二叉树推论](Tree.md?plain=1#L90)），和其叶子结点们比较（需要则交换）
+3. 从2可得，小于其下标的都是非叶子结点
+4. 倒序遍历非叶子结点，与它们的叶子结点们比较（需要则交换）
+5. 当根结点（首元素）与其子结点交换后
+    - 可能导致其子树再次不满足堆定义（原根结点比较小，比子树的子结点更小）
+6. 交换后的 __原根节__ 点继续和其子结点比较（需要则交换）,最后得到 __二叉堆__
+    - 最大堆 → 升序数组
+    - 最小堆 → 降序数组
+7. __开始堆排序__：将堆顶元素和尾元素交换
+8. 并将交换后的 __尾元素__ 不再视为二叉树的一部分（脱离）
+9. 继续检视二叉树，调整使其重新满足二叉堆（进行 5~6）
+10. 二叉堆继续排序（进行 7~9）直到排序完成
+
+### 实现
+
+```javascript {.line-numbers}
+function heapSort(nums) {
+  let len = nums.length
+  if (len < 1) return nums
+  // 构建最大堆
+  buildMaxHeap(nums)
+  // 见步骤 7，循环:
+  // 将堆首（最大值）与未排序数据末尾交换
+  // 然后重新调整为最大堆
+  while (len > 0) {
+    swap(nums, 0, len - 1)
+    // 见步骤 8
+    len--
+    // 见步骤 9
+    // 继续调整，使其满足二叉堆
+    adjustHeap(nums, 0, len)
+    console.log(nums)
+    console.log('----------')
+  }
+  return nums
+}
+// 交换数组内两个元素
+function swap(array, i, j) {
+  let temp = array[i]
+  array[i] = array[j]
+  array[j] = temp
+}
+// 建立最大堆（与 使之成为最大堆 逻辑一样）
+function buildMaxHeap(array) {
+  const len = array.length
+  // (一定是)从最后一个非叶子结点开始向上构造最大堆
+  // 见步骤 3
+  let i = Math.floor(len / 2) - 1
+  for (; i >= 0; i--) {
+    adjustHeap(array, i, len)
+  }
+  console.log('构造最大堆', array)
+  console.log('====================')
+}
+// 调整使之成为最大堆
+function adjustHeap(array, i, len) {
+  let maxIndex = i
+  // 完全二叉树推论
+  let left = 2 * i + 1
+  let right = 2 * (i + 1)
+  // 见步骤 4
+  // 如果有左子树，且 左子树 > 父结点
+  // 则将最大指针指向左子树
+  if (left < len && array[left] > array[maxIndex]) {
+    maxIndex = left
+  }
+  // 如果有右子树，且 右子树 > 父结点
+  // 则将最大指针指向右子树
+  if (right < len && array[right] > array[maxIndex]) {
+    maxIndex = right
+  }
+  // 见步骤 5
+  // 如果父结点不是最大值，则将父结点与最大值交换
+  if (maxIndex !== i) {
+    swap(array, maxIndex, i)
+    // 见步骤 6
+    // 会影响到已调整过的，故递归调整与父结点交换的位置
+    adjustHeap(array, maxIndex, len)
+  }
+}
+```
