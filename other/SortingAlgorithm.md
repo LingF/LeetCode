@@ -23,7 +23,7 @@
     - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
     - [步骤](#步骤-5)
     - [实现](#实现-5)
-  - [7. 堆排序（Heap Sort）](#6-归并排序heap-sort)
+  - [7. 堆排序（Heap Sort）](#7-堆排序heap-sort)
     - [时间复杂度：`O(nlogn)`](#时间复杂度onlogn)
     - [步骤](#步骤-6)
     - [实现](#实现-6)
@@ -190,6 +190,7 @@ function insertionSort(nums) {
 function quickSort(nums) {
   return sort(nums, 0, nums.length - 1)
 }
+
 function sort(array, start, end) {
   if (array.length < 1 || start < 0 || end >= array.length || start > end) return null
   // 数据分割成独立的两部分
@@ -203,6 +204,7 @@ function sort(array, start, end) {
   }
   return array
 }
+
 // 快速排序分区方法
 function partition(array, start, end) {
   // 只有一个元素时不需分区
@@ -227,6 +229,7 @@ function partition(array, start, end) {
   }
   return zoneIndex
 }
+
 // 交换数组内两个元素
 function swap(array, i, j) {
   let temp = array[i]
@@ -330,6 +333,7 @@ function mergeSort(nums) {
   let right = nums.slice(mid, nums.length)
   return merge(mergeSort(left), mergeSort(right))
 }
+
 // 将两段排序好的数组结合成一个排序数组
 function merge(left, right) {
   let result = Array.from({ length: left.length + right.length })
@@ -407,12 +411,14 @@ function heapSort(nums) {
   }
   return nums
 }
+
 // 交换数组内两个元素
 function swap(array, i, j) {
   let temp = array[i]
   array[i] = array[j]
   array[j] = temp
 }
+
 // 建立最大堆（与 使之成为最大堆 逻辑一样）
 function buildMaxHeap(array) {
   const len = array.length
@@ -425,6 +431,7 @@ function buildMaxHeap(array) {
   console.log('构造最大堆', array)
   console.log('====================')
 }
+
 // 调整使之成为最大堆
 function adjustHeap(array, i, len) {
   let maxIndex = i
