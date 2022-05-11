@@ -28,7 +28,7 @@
     - [步骤](#步骤-6)
     - [实现](#实现-6)
   - [8. 计数排序（Counting Sort）](#8-计数排序counting-sort)
-    - [时间复杂度：`O(n + k)`](#时间复杂度n+k)
+    - [时间复杂度：`O(n + k)`](#时间复杂度on--k)
     - [步骤](#步骤-7)
     - [实现](#实现-7)
 
@@ -505,7 +505,7 @@ function adjustHeap(array, i, len) {
 
 ```javascript {.line-numbers}
 function countingSort(nums) {
-  let len = nums.length
+  const len = nums.length
   if (!len) return nums
   let bias
   let min = nums[0]
@@ -530,7 +530,7 @@ function countingSort(nums) {
   let index = 0
   // 计数数组下标计数器
   let i = 0
-  while (index < nums.length) {
+  while (index < len) {
     if (count[i]) {
       nums[index] = i - bias
       count[i]--
