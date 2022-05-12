@@ -31,6 +31,10 @@
     - [时间复杂度：`O(n + k)`](#时间复杂度on--k)
     - [步骤](#步骤-7)
     - [实现](#实现-7)
+  - [9. 桶排序（Bucket Sort）](#9-桶排序bucket-sort)
+    - [时间复杂度：`O(n + k)`](#时间复杂度on--k)
+    - [步骤](#步骤-8)
+    - [实现](#实现-8)
 
 # 排序算法
 
@@ -543,5 +547,87 @@ function countingSort(nums) {
     console.log('----------')
   }
   return nums
+}
+```
+
+## 9. 桶排序（Bucket Sort）
+
+计数排序的升级版
+
+假设输入数据服从均匀分布，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排
+
+### 时间复杂度：`O(n + k)`
+
+### 步骤
+
+1. 建立桶
+2. 将元素按区间放入桶中
+3. 各个桶分别进行排序（插入、快速等）
+4. 依次取出桶中的元素
+
+#### 案例
+
+`[35, 23, 48, 9, 16, 24, 5, 11, 32, 17]`
+
+建立5个桶：[0, 10)、[10, 20)、[20, 30)、[30, 40)、[40, 50) 左闭右开区间，放入5个桶分别排序，依次取出5个桶中的元素，得到排序后的序列
+
+### 实现
+
+```javascript {.line-numbers}
+function bucketSort(nums, bucketCap) {
+  if (!Array.isArray(nums) || nums.length < 2) return nums
+  const len = nums.length
+  let max = nums[0]
+  let min = nums[0]
+  // 找到最大、最小值
+  for (let i = 0; i < len; i++) {
+    if (nums[i] > max) max = nums[i]
+    if (nums[i] < min) min = nums[i]
+  }
+
+  // 获取桶数量
+  let bucketCount = Math.floor((max - min) / bucketCap) + 1
+  // 桶数组
+  let bucketArr = []
+  let resultArr = []
+  // 构建桶
+  for (let i = 0; i < bucketCount; i++) {
+    bucketArr.push([])
+  }
+  // 将数据分配到桶中
+  for (let i = 0; i < len; i++) {
+    const item = nums[i]
+    const index = Math.floor((item - min) / bucketCap)
+    bucketArr[index].push(item)
+  }
+
+  // 看看桶中数据的分布
+  for (let i = 0; i < bucketCount; i++) {
+    console.log('第', i, '个桶包含数据：')
+    console.log(bucketArr[i])
+  }
+
+  // 桶内数据排序
+  for (let i = 0; i < bucketCount; i++) {
+    // 每个桶里只有1个元素，依次取出
+    if (bucketCap === 1) {
+      for (let j = 0, jLen = bucketArr[i].length; j < jLen; j++)
+      resultArr.push(bucketArr[i][j])
+    } else {
+      // 当只能划分一个桶时，减少每个桶元素的上限
+      // 增加桶的数量（缩小每个桶的区间）
+      if (bucketCount === 1) {
+        bucketCap--
+      }
+      console.log('对第', i, '桶中的数据再次用桶进行排序', '每个桶最多放', bucketCap, '个元素')
+      // 递归使用桶排序
+      const temp = bucketSort(bucketArr[i], bucketCap)
+      // 依次取出
+      for (let j = 0, jLen = temp.length; j < jLen; j++) {
+        resultArr.push(temp[j])
+      }
+    }
+  }
+  return resultArr
 }
 ```

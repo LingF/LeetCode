@@ -72,6 +72,7 @@
   - [6. 归并排序](/other/SortingAlgorithm.md#6-归并排序merge-sort)
   - [7. 堆排序](/other/SortingAlgorithm.md#7-堆排序heap-sort)
   - [8. 计数排序](/other/SortingAlgorithm.md#8-计数排序counting-sort)
+  - [9. 桶排序](/other/SortingAlgorithm.md#9-桶排序bucket-sort)
 
 ### 依赖
 
