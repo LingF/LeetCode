@@ -35,6 +35,10 @@
     - [时间复杂度：`O(n + k)`](#时间复杂度on--k)
     - [步骤](#步骤-8)
     - [实现](#实现-8)
+  - [10. 基数排序（Radix Sort）](#10-基数排序radix-sort)
+    - [时间复杂度：`O(nk)`](#时间复杂度onk)
+    - [步骤](#步骤-9)
+    - [实现](#实现-9)
 
 # 排序算法
 
@@ -573,6 +577,10 @@ function countingSort(nums) {
 
 ### 实现
 
+桶排序中保证元素均匀分布到各个桶尤为关键（极端的例子：所有待排序元素都落在同一个桶中）
+
+为了保证均匀分布，我们限定桶的容量，再根据元素个数来决定桶的个数
+
 ```javascript {.line-numbers}
 function bucketSort(nums, bucketCap) {
   if (!Array.isArray(nums) || nums.length < 2) return nums
@@ -629,5 +637,108 @@ function bucketSort(nums, bucketCap) {
     }
   }
   return resultArr
+}
+```
+
+## 10. 基数排序（Radix Sort）
+
+非比较的排序算法。数据元素由若干位组成（字符串、整数）
+
+### 时间复杂度：`O(nk)`
+
+### 步骤
+
+1. 从右往左依次将每一位当做一次关键字对数组元素入桶
+2. 每一轮入桶都基于上轮入桶结果，完成所有位入桶，达到有序
+
+#### 案例
+
+`[35, 23, 48, 9, 16, 24, 5, 11, 32, 17, 70, 56]`
+
+个位入桶：
+
+```
+0：70
+1: 11
+2: 32
+...
+9: 9
+```
+得到：`[70, 11, 32, 23, 24, 35, 5, 56, 16, 17, 48, 9]`
+
+十位入桶：
+
+```
+0: 5, 9
+1: 11, 16, 17
+...
+7: 70
+8:
+9:
+```
+最终得到：`[5, 9, 11, 16, 17, 23, 24, 32, 35, 48, 56, 70]`
+
+#### 桶相关排序的比较
+
+基数排序、计数排序和桶排序都利用了桶的概念，但对桶的使用有差异：
+
+- 基数排序：根据键值的每位数字来分配桶
+- 计数排序：每个桶只存储单一键值
+- 桶排序：每个桶存储一定范围的数值
+
+### 实现
+
+十进制整数：每一位10种可能，10就是基
+二进制数字：基为2
+字符串（8位的扩展ASCII）：基是256
+...
+
+```javascript {.line-numbers}
+function radixSort(nums) {
+  if (!Array.isArray(nums) || nums.length < 2) return nums
+  const len = nums.length
+  // 找出最大数
+  let max = nums[0]
+  for (let i = 0; i < len; i++) {
+    max = Math.max(nums[i], max)
+  }
+
+  // 算出最大位数，用来确定进行几轮排序
+  let maxDigit = 0
+  while (max != 0) {
+    max = parseInt(max / 10)
+    maxDigit++
+  }
+
+  // 构建桶
+  // bucketCount = 10
+  // 每一位都是 0~9 10个数字，所以分10个桶
+  const bucketCount = 10
+  let bucketList = Array.from({ length: bucketCount }, () => [])
+  
+  let mod = 10
+  let div = 1
+  // 从右往左，每一位作为关键字排序，每一轮基于上一轮的结果排序
+  for (let i = 0; i < maxDigit; i++, mod *= 10, div *= 10) {
+    // 遍历原始数组，投入到各个桶
+    for (let j = 0; j < len; j++) {
+      const item = nums[j]
+      const index = Math.floor((item % mod) / div)
+      bucketList[index].push(item)
+    }
+
+    // 输出桶中分布
+    for (let b = 0, bLen = bucketList.length; b < bLen; b++) {
+      console.log('第', b, '个桶包含：', bucketList[b])
+    }
+
+    // 桶中的数据写回原始数组
+    nums = bucketList.reduce((previousValue, currentValue) => {
+      return previousValue.concat(currentValue)
+    }, [])
+    // 清除桶，准备下一轮排序
+    bucketList = Array.from({ length: bucketCount }, () => [])
+  }
+  return nums
 }
 ```
