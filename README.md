@@ -74,6 +74,7 @@
   - [8. 计数排序](/other/SortingAlgorithm.md#8-计数排序counting-sort)
   - [9. 桶排序](/other/SortingAlgorithm.md#9-桶排序bucket-sort)
   - [10. 基数排序](/other/SortingAlgorithm.md#10-基数排序radix-sort)
+  - [排序算法总结](/other/SortingAlgorithm.md#排序算法总结)
 
 ### 依赖
 
