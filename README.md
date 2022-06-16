@@ -99,6 +99,7 @@
   - [10. 基数排序](/other/SortingAlgorithm.md#10-基数排序radix-sort)
   - [排序算法总结](/other/SortingAlgorithm.md#排序算法总结)
 - [位运算](/other/BitwiseOperation.md)
+- [字符串匹配算法](/other/String.md)
 
 ### 依赖
 
